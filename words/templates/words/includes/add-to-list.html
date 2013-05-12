@@ -27,5 +27,5 @@
     </form>
 {% endif %}
 {% else %}
-<p><a href="/account/login/">Login</a> or <a href="/account/register/">Register</a> to add this word to your lists.</p>
+<p><a href="/account/login/?next={{ current }}">Login</a> or <a href="/account/register/?next={{ current }}">Register</a> to add this word to your lists.</p>
 {% endif %}
