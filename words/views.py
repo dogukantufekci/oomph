@@ -13,12 +13,17 @@ db = settings.MONGODB
 
 def word(request, word):
     word = get_object_or_404(Word, word=word)
+    user_words_learned = []
+    user_words_to_learn = []
+    if request.user.is_authenticated():
+        user_words_learned = request.user.words_learned.all()
+        user_words_to_learn = request.user.words_to_learn.all()
     return render(request, "words/word.html", {
         'user': request.user,
         'word': word,
         'current': request.get_full_path(),
-        'user_words_learned': request.user.words_learned.all(),
-        'user_words_to_learn': request.user.words_to_learn.all(),
+        'user_words_learned': user_words_learned,
+        'user_words_to_learn': user_words_to_learn,
     })
 
 def index(request):

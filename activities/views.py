@@ -13,14 +13,16 @@ def index(request):
         'me': 'inactive'
     }
     user_words_to_learn = []
+    user_words_learned = []
 
     if request.user.is_anonymous():
         query = {'visibility': ActivityVisibilityChoices.PUBLIC}
         filter_status['public'] = 'active'
-        suggested_word = None
+        word = None
     else:
-        suggested_word = Word.objects.order_by('?').all()[0]
-        user_words_to_learn = request.user.words_to_learn.order_by('created_at')[:10]
+        word = Word.objects.order_by('?').all()[0]
+        user_words_to_learn = request.user.words_to_learn.all()
+        user_words_learned = request.user.words_learned.all()
         if request.GET.get('filter') == 'friends':
             following = [user.id for user in request.user.following.all()]
             query = {'$or': [
@@ -41,10 +43,10 @@ def index(request):
     activities = list(db.activities.find(query).sort('created_at', -1).limit(10))
     return render(request, "activities/index.html", {
         'user': request.user,
-        'user_words_learned': request.user.words_learned.all(),
-        'user_words_to_learn': request.user.words_to_learn.all(),
         'activities': activities,
-        'suggested_word': suggested_word,
+        'word': word,
         'user_words_to_learn': user_words_to_learn,
+        'user_words_learned': user_words_learned,
         'filter_status': filter_status,
+        'current': request.get_full_path()
     })

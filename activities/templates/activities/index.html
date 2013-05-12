@@ -13,10 +13,10 @@
 {% else %}
 <div class="hero-unit">
     <small>Suggested Word</small>
-    <h1>{{ suggested_word.word }}</h1>
-    <p>{{ suggested_word.type }}</p>
+    <h1>{{ word.word }}</h1>
+    <p>{{ word.type }}</p>
     <ol>
-        {% for definition in suggested_word.definitions %}
+        {% for definition in word.definitions %}
         <li>{{ definition }}</li>
         {% endfor %}
     </ol>
@@ -60,7 +60,7 @@ Sorry, no activity found.
     </ul>
 
     {% if user_words_to_learn %}
-    {% for word in user_words_to_learn %}
+    {% for word in user_words_to_learn|slice:":10" %}
     <p class="word">
         <a href="/words/{{ word.word }}/">
             {{ word.word }}
