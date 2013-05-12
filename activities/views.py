@@ -41,6 +41,8 @@ def index(request):
     activities = list(db.activities.find(query).sort('created_at', -1).limit(10))
     return render(request, "activities/index.html", {
         'user': request.user,
+        'user_words_learned': request.user.words_learned.all(),
+        'user_words_to_learn': request.user.words_to_learn.all(),
         'activities': activities,
         'suggested_word': suggested_word,
         'user_words_to_learn': user_words_to_learn,
