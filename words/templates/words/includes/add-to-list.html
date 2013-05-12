@@ -17,13 +17,13 @@
     <form method="post" action="/me/words-learned/?next={{ current }}">{% csrf_token %}
         <input name="word_learned" value="{{ word.word }}" type="hidden">
         <input name="method" value="DELETE" type="hidden">
-        <input class="btn btn-small" value="Remove from Learned" type="submit">
+        <input class="btn btn-small" value="Remove from Words Learned" type="submit">
     </form>
 {% else %}
     <form method="post" action="/me/words-learned/?next={{ current }}">{% csrf_token %}
         <input name="word_learned" value="{{ word.word }}" type="hidden">
         <input name="method" value="POST" type="hidden">
-        <input class="btn btn-small" value="Add to Learned" type="submit">
+        <input class="btn btn-small" value="Add to Words Learned" type="submit">
     </form>
 {% endif %}
 
