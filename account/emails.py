@@ -10,7 +10,7 @@ def email_changed(user):
     You have changed your email address.
     Please verify your new email address by using this link:
 
-    \thttp://127.0.0.1:8000/account/settings/verify-email/?key=%(key)s
+    \thttp://pacific-springs-1995.herokuapp.com/account/settings/verify-email/?key=%(key)s
 
     Learn words with friends,
     Oomph
