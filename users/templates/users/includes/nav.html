@@ -1,0 +1,19 @@
+{% include "users/includes/listed-oomph-user.html" %}
+<hr>
+<ul class="nav nav-tabs nav-stacked">
+  <li>
+    <a href="/users/{{ oomph_user.username }}/activities/">Activities</a>
+  </li>
+  <li>
+    <a href="/users/{{ oomph_user.username }}/words-to-learn/">Words To-Learn</a>
+  </li>
+  <li>
+    <a href="/users/{{ oomph_user.username }}/words-learned/">Words Learned</a>
+  </li>
+  <li>
+    <a href="/users/{{ oomph_user.username }}/followers/">Followers</a>
+  </li>
+  <li>
+    <a href="/users/{{ oomph_user.username }}/following/">Following</a>
+  </li>
+</ul>

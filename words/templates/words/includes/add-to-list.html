@@ -1,0 +1,30 @@
+{% if user.is_authenticated %}
+{% if word in user_words_to_learn %}
+    <form method="post" action="/me/words-to-learn/?next={{ current }}">{% csrf_token %}
+        <input name="word_to_learn" value="{{ word.word }}" type="hidden">
+        <input name="method" value="DELETE" type="hidden">
+        <input class="btn btn-small" value="Remove from Words To-Learn" type="submit">
+    </form>
+{% else %}
+    <form method="post" action="/me/words-to-learn/?next={{ current }}">{% csrf_token %}
+        <input name="word_to_learn" value="{{ word.word }}" type="hidden">
+        <input name="method" value="POST" type="hidden">
+        <input class="btn btn-small" value="Add to Words To-Learn" type="submit">
+    </form>
+{% endif %}
+
+{% if word in user_words_learned %}
+    <form method="post" action="/me/words-learned/?next={{ current }}">{% csrf_token %}
+        <input name="word_learned" value="{{ word.word }}" type="hidden">
+        <input name="method" value="DELETE" type="hidden">
+        <input class="btn btn-small" value="Remove from Learned" type="submit">
+    </form>
+{% else %}
+    <form method="post" action="/me/words-learned/?next={{ current }}">{% csrf_token %}
+        <input name="word_learned" value="{{ word.word }}" type="hidden">
+        <input name="method" value="POST" type="hidden">
+        <input class="btn btn-small" value="Add to Learned" type="submit">
+    </form>
+{% endif %}
+
+{% endif %}

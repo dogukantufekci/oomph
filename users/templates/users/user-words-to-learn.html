@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content_left %}
+<div class="span4">
+    {% include "users/includes/nav.html" %}
+</div>
+{% endblock content_left %}
+
+{% block content_right %}
+<div class="span8">
+    <h2>Words To-Learn</h2>
+    {% if oomph_user_words_to_learn %}
+    {% for word in oomph_user_words_to_learn %}
+    <p><a href="/words/{{ word.word }}/">{{ word.word }}</a></p>
+    {% endfor %}
+    {% else %}
+    <div class="alert alert-info">
+    {{ oomph_user.username }} has not listed any words to-learn.
+    </div>
+    {% endif %}
+</div>
+{% endblock content_right %}

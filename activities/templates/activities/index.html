@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block hero %}
+{% if user.is_anonymous %}
+<div class="hero-unit">
+    <h1>oomph (ʊmf)</h1>
+    <p>n. Informal.</p>
+    <ol>
+        <li>enthusiasm, vigour, or energy</li>
+        <li>sex appeal</li>
+    </ol>
+</div>
+{% else %}
+<div class="hero-unit">
+    <small>Suggested Word</small>
+    <h1>{{ suggested_word.word }}</h1>
+    <p>{{ suggested_word.type }}</p>
+    <ol>
+        {% for definition in suggested_word.definitions %}
+        <li>{{ definition }}</li>
+        {% endfor %}
+    </ol>
+</div>
+{% endif %}
+{% endblock hero %}
+
+{% block content_left %}
+<div class="span8">
+    <ul class="nav nav-tabs">
+      <li class="{{ filter_status.public }}">
+        <a href="/activities/?filter=public">Public Activities</a>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="{{ filter_status.friends }}">
+        <a href="/activities/?filter=friends">Friends' Activities</a>
+      </li>
+      <li class="{{ filter_status.me }}">
+        <a href="/activities/?filter=me">My Activities</a>
+      </li>
+      {% endif %}
+    </ul>
+{% if activities %}
+{% for activity in activities %}
+{% include "activities/includes/listed-activity.html" %}
+{% endfor %}
+{% else %}
+Sorry, no activity found.
+{% endif %}
+</div>
+{% endblock content_left %}
+
+{% block content_right %}
+<div class="span4">
+    {% if user.is_authenticated %}
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#">My Words To-Learn</a>
+        </li>
+    </ul>
+
+    {% if user_words_to_learn %}
+    {% for word in user_words_to_learn %}
+    <p class="word">
+        <a href="/words/{{ word.word }}/">
+            {{ word.word }}
+        </a>
+    </p>
+    {% endfor %}
+    {% else %}
+    Sorry, no words found.
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock content_right %}

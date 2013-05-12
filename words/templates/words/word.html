@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block hero %}
+<div class="hero-unit">
+    <h1>{{ word.word }}</h1>
+    <p>{{ word.type }}</p>
+    <ol>
+        {% for definition in word.definitions %}
+        <li>{{ definition }}</li>
+        {% endfor %}
+    </ol>
+    {% include "words/includes/add-to-list.html" %}
+</div>
+{% endblock hero %}

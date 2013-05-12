@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content_left %}
+<div class="span4">
+    {% include "users/includes/nav.html" %}
+</div>
+{% endblock content_left %}
+
+{% block content_right %}
+<div class="span8">
+    <h2>Following</h2>
+    {% if oomph_user_following %}
+        {% for oomph_user in oomph_user_following %}
+        {% include "users/includes/listed-oomph-user.html" %}
+        {% endfor %}
+    {% else %}
+    <div class="alert alert-info">
+    {{ oomph_user.username }} does not follow anyone.
+    </div>
+    {% endif %}
+</div>
+{% endblock content_right %}

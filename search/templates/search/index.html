@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content_left %}
+<div class="span12">
+    {% if query %}
+    <h2>Search results for: {{ query }}</h2>
+    
+    {% if perfect_match %}
+    <div class="hero-unit">
+        <small>Perfect Word Match</small>
+        <h1>{{ perfect_match.word }}</h1>
+    </div>
+    {% else %}
+    <div class="hero-unit">
+        <p>Perfect word match could not be found.</p>
+        {% if user.is_authenticated %}
+        <form action="/words/" method="post">{% csrf_token %}
+            <p>Do you want to add <b>{{ query }}</b> to Oomph?</p>
+            <input type="hidden" name="word" value="{{ query }}">
+            <input class="btn" type="submit" value="Add">
+        </form>
+        {% else %}
+        <p><a href="/account/login/?next=/search/?q={{ query }}">Login</a> to add it.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
+    <h2>Random Search Results</h2>
+    {% endif %}
+
+    <div class="row">
+
+        {% if words %}
+        <div class="span6">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#">Words</a>
+                </li>
+            </ul>
+            {% for word in words %}
+            <p class="word">
+                <a href="/words/{{ word.word }}/">
+                    {{ word.word }}
+                </a>
+            </p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if oomph_users %}
+        <div class="span6">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#">People</a>
+                </li>
+            </ul>
+            {% for oomph_user in oomph_users %}
+            {% include "users/includes/listed-oomph-user.html" %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock content_left %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block search %}
+{% endblock search %}
+
+{% block content_left %}
+<div class="span12">
+    <h1>Register</h1>
+    <hr>
+    <form class="form-horizontal" method="post" action="/account/register/">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="control-group {% if field.errors %}error{% endif %}">
+            <label class="control-label">{{ field.label }}</label>
+            <div class="controls">
+                {{ field }}
+                {% if field.errors %}
+                <span class="help-inline">{{ field.errors }}</span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn">Register</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

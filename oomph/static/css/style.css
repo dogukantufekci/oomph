@@ -1,0 +1,36 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.listed-activity {
+    margin-bottom: 10px;
+}
+
+.listed-activity ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.listed-activity .user-picture,
+.listed-activity-content {
+    float: left;
+}
+
+.listed-activity-content ul {
+    margin-left: 5px;
+}
+
+ul.messages {
+    margin-left: 0;
+}
+
+ul.messages li {
+    margin-left: 15px;
+}
+
+.form-horizontal .help-inline ul {
+    list-style: none;
+    margin: 0;
+}

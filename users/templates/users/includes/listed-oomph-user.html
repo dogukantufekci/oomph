@@ -1,0 +1,13 @@
+<div class="media">
+    <a class="pull-left" href="#">
+        <img class="media-object" src="{% if oomph_user.facebook_id %}https://graph.facebook.com/{{ oomph_user.facebook_id }}/picture{% else %}http://profile.ak.fbcdn.net/hprofile-ak-ash4/c25.0.81.81/s50x50/252231_1002029915278_1941483569_s.jpg{% endif %}">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">
+        <a href="/users/{{ oomph_user.username }}/">
+            {{ oomph_user.username }}
+        </a>
+        </h4>
+        {% include "users/includes/follow-button.html" %}
+    </div>
+</div>

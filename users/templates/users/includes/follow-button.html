@@ -1,0 +1,21 @@
+{% if user.is_authenticated and user.id != oomph_user.id %}
+{% if oomph_user in user_following %}
+    <form method="post" action="/me/following/?next={{ current }}">{% csrf_token %}
+        <input name="followed_user_id" value="{{ oomph_user.id }}" type="hidden">
+        <input name="method" value="DELETE" type="hidden">
+        <input class="btn btn-small" value="Unfollow" type="submit">
+    </form>
+{% elif oomph_user in user_requesting_to_follow %}
+    <form method="post" action="/me/following/?next={{ current }}">{% csrf_token %}
+        <input name="followed_user_id" value="{{ oomph_user.id }}" type="hidden">
+        <input name="method" value="DELETE" type="hidden">
+        <input class="btn btn-small" value="Remove follow request" type="submit">
+    </form>
+{% else %}
+    <form method="post" action="/me/following/?next={{ current }}">{% csrf_token %}
+        <input name="followed_user_id" value="{{ oomph_user.id }}" type="hidden">
+        <input name="method" value="POST" type="hidden">
+        <input class="btn btn-small" value="Follow" type="submit">
+    </form>
+{% endif %}
+{% endif %}

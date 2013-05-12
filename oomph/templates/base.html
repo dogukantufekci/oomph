@@ -1,0 +1,107 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Oomph - Learning words with friends</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Styles -->
+    <link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/style.css" %}" rel="stylesheet" >
+    <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="{% static "bootstrap/js/html5shiv.js" %}"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static "bootstrap/ico/apple-touch-icon-144-precomposed.png" %}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "bootstrap/ico/apple-touch-icon-114-precomposed.png" %}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "bootstrap/ico/apple-touch-icon-72-precomposed.png" %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static "bootstrap/ico/apple-touch-icon-57-precomposed.png" %}">
+    <link rel="shortcut icon" href="{% static "bootstrap/ico/favicon.png" %}">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/">Oomph</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-left">
+              <li><a href="/words/">Words</a></li>
+              <li><a href="/users/">People</a></li>
+            </ul>
+            <ul class="nav pull-right">
+              {% if user.is_anonymous %}
+              <li><a href="/account/login/">Login</a></li>
+              <li><a href="/account/register/">Register</a></li>
+              {% else %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/me/activities/">Activities</a></li>
+                  <li><a href="/me/words-to-learn/">Words To-Learn</a></li>
+                  <li><a href="/me/words-learned/">Words Learned</a></li>
+                  <li><a href="/me/followers/">Followers</a></li>
+                  <li><a href="/me/following/">Following</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/account/settings/">Settings</a></li>
+                  <li><a href="/account/logout/">Logout</a></li>
+                </ul>
+              </li>
+              {% endif %}
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      {% block search%}
+      <div id="search" class="row">
+        <form class="span12" method="get" action="/search/">
+          <input class="span12" name="q" type="text" placeholder="Search words and people">
+        </form>
+      </div>
+      {% endblock search %}
+
+      {% block hero %}
+      {% endblock hero%}
+
+      <div id="content" class="row">
+
+        {% block content_left %}
+        {% endblock content_left %}
+
+        {% block content_right %}
+        {% endblock content_right %}
+
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Oomph by CRECO 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Javascript -->
+    <script src="{% static "js/jquery-1.9.1.min.js" %}"></script>
+    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content_left %}
+<div class="span4">
+    {% include "users/includes/nav.html" %}
+</div>
+{% endblock content_left %}
+
+{% block content_right %}
+<div class="span8">
+    {% if oomph_users %}
+    <h2>Suggested Users</h2>
+        {% for oomph_user in oomph_users %}
+            {% include "users/includes/listed-oomph-user.html" %}
+        {% endfor %}
+    {% else %}
+        No user is found.
+    {% endif %}
+</div>
+{% endblock content_right %}

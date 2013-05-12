@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content_left %}
+<div class="span4">
+    {% include "users/includes/nav.html" %}
+</div>
+{% endblock content_left %}
+
+{% block content_right %}
+<div class="span8">
+    <div class="alert alert-error">
+        Profile viewing is limited to {{ oomph_user.username }}'s followers.
+    </div>
+</div>
+{% endblock content_right %}
