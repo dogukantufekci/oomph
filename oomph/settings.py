@@ -3,7 +3,7 @@ PROJECT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 # Django settings for oomph project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
