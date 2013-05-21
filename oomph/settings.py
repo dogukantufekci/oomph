@@ -76,7 +76,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '__(gac-+l(e!7##xbp^sjyxbb03!y^9sv^*iu)v@hgen1&a7-^'
+SECRET_KEY = ''
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -154,8 +154,8 @@ LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = '/me/'
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'labs@creco.co'
-EMAIL_HOST_PASSWORD = 'donothack'
+EMAIL_HOST_USER = 'email@email.com'
+EMAIL_HOST_PASSWORD = 'passsword'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -172,7 +172,7 @@ EMAIL_USE_TLS = True
 
 # Mongo Client
 from pymongo import Connection
-MONGOHQ_URL = 'mongodb://oomph:bycreco@dharma.mongohq.com:10002/oomph'
+MONGOHQ_URL = 'mongodb://username:password@dharma.mongohq.com:10002/oomph'
 MONGODB = Connection(MONGOHQ_URL).oomph
 
 # Heroku # Postgres
